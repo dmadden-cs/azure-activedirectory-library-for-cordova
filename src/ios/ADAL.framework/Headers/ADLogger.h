@@ -67,17 +67,17 @@ typedef enum
  for most error messages the error object will be in the "error" key.
  */
 typedef void (^LogCallback)(ADAL_LOG_LEVEL logLevel,
-                            NSString * _Nonnull message,
-                            NSString * _Nullable additionalInfo,
+                            NSString *message,
+                            NSString *additionalInfo,
                             NSInteger errorCode,
-                            NSDictionary * _Nullable userInfo);
+                            NSDictionary *userInfo);
 
 /*!
     Sets a block for the ADAL logger to use to send log messages to.
  
     @param callback     The block log messages are sent to. See the documentation for LogCallback for more information.
  */
-+ (void)setLogCallBack:(nullable LogCallback)callback __attribute((deprecated("Use the setLoggerCallback: method instead.")));
++ (void)setLogCallBack:(LogCallback)callback __attribute((deprecated("Use the setLoggerCallback: method instead.")));
 
 
 /*!
@@ -88,10 +88,10 @@ typedef void (^LogCallback)(ADAL_LOG_LEVEL logLevel,
  @param  containsPii     If the message might contain Personally Identifiable Information (PII) this will be true. Log messages possibly containing PII will not be sent to the callback unless piiEnabled is set to YES on the logger.
  */
 typedef void (^ADLoggerCallback)(ADAL_LOG_LEVEL logLevel,
-                                 NSString * _Nonnull message,
+                                 NSString *message,
                                  BOOL containsPii);
 
-+ (void)setLoggerCallback:(nullable ADLoggerCallback)callback;
++ (void)setLoggerCallback:(ADLoggerCallback)callback;
 
 /*!
     Turns on or off ADAL printing log messages to the console via NSLog. On by default.

@@ -36,20 +36,20 @@
 }
 
 /*! The extracted authority. */
-@property (readonly, nullable) NSString *authority;
+@property (readonly) NSString *authority;
 
 /*! The resource, as returned by the server. */
-@property (readonly, nullable) NSString *resource;
+@property (readonly) NSString *resource;
 
 /*! All parameters that were extracted from the authentication challenge */
-@property (readonly, nullable) NSDictionary *extractedParameters;
+@property (readonly) NSDictionary *extractedParameters;
 
 /*!
     @param  parameters  The authentication parameters from the challenge presented by the resource,
                         nil if an error occurred
     @param  error       An ADAuthenticationError object with error details.
 */
-typedef void (^ADParametersCompletion)(ADAuthenticationParameters * _Nullable parameters, ADAuthenticationError * _Nullable error);
+typedef void (^ADParametersCompletion)(ADAuthenticationParameters *parameters, ADAuthenticationError *error);
 
 /*!
     Creates authentication parameters from the response received from the resource. The method
@@ -61,8 +61,8 @@ typedef void (^ADParametersCompletion)(ADAuthenticationParameters * _Nullable pa
     @param  error       Can be nil. If this parameter is not nil and an error occurred, it will be set to
                         contain the error
  */
-+ (nullable ADAuthenticationParameters *)parametersFromResponse:(nonnull NSHTTPURLResponse *)response
-                                                          error:(ADAuthenticationError * __autoreleasing _Nullable * _Nullable)error;
++ (ADAuthenticationParameters *)parametersFromResponse:(NSHTTPURLResponse *)response
+                                                 error:(ADAuthenticationError * __autoreleasing *)error;
 
 /*!
     Creates authentication parameters from "WWW-Authenticate" header of the response received
@@ -72,8 +72,8 @@ typedef void (^ADParametersCompletion)(ADAuthenticationParameters * _Nullable pa
     @param  error               Can be nil. If this parameter is not nil and an error occurred, it will be set to
                                 contain the error
  */
-+ (nullable ADAuthenticationParameters *)parametersFromResponseAuthenticateHeader:(nonnull NSString *)authenticateHeader
-                                                                            error:(ADAuthenticationError * __autoreleasing _Nullable * _Nullable)error;
++ (ADAuthenticationParameters *)parametersFromResponseAuthenticateHeader:(NSString *)authenticateHeader
+                                                                   error:(ADAuthenticationError * __autoreleasing *)error;
 
 /*!
     Extracts the authority from the the error code 401 http error code response. The method
@@ -83,7 +83,7 @@ typedef void (^ADParametersCompletion)(ADAuthenticationParameters * _Nullable pa
     @param  resourceUrl     The address of the resource.
     @param  completionBlock The callback block to be executed upon completion.
  */
-+ (void)parametersFromResourceUrl:(nonnull NSURL *)resourceUrl
-                  completionBlock:(nonnull ADParametersCompletion)completionBlock;
++ (void)parametersFromResourceUrl:(NSURL *)resourceUrl
+                  completionBlock:(ADParametersCompletion)completionBlock;
 
 @end

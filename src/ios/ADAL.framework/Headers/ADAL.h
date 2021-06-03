@@ -36,7 +36,7 @@ FOUNDATION_EXPORT const unsigned char ADALFrameworkVersionString[];
 @class ADAuthenticationResult;
 
 /*! The completion block declaration. */
-typedef void(^ADAuthenticationCallback)(ADAuthenticationResult* _Nonnull result);
+typedef void(^ADAuthenticationCallback)(ADAuthenticationResult* result);
 
 #import <ADAL/ADAuthenticationContext.h>
 #import <ADAL/ADAuthenticationError.h>
